@@ -10,7 +10,9 @@ namespace DummyTest
     {
         static void Main(string[] args)
         {
-            Console.Write(Core.ExecuteStraith("us", string.Empty, string.Empty, "90210"));
+            Console.Write(Core.ExecuteStraigth("us", "ca", "Hollywood"));
+            Console.Write(Core.ExecuteStraigth("us", "90210"));
+            Console.Write(Core.GetNearbyStraigth("us", "90210"));
             Console.Read();
         }
     }
