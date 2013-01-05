@@ -9,7 +9,7 @@ namespace ZippopotamusNet
 {
     public class Core
     {
-        private static string _baseUrl = "http://api.hippopotam.us";
+        private static string _baseUrl = "http://api.zippopotam.us";
 
         public static string ExecuteStraith(string country, string state, string city, string zipcode)
         {
