@@ -7,10 +7,6 @@ using System.IO;
 
 namespace ZippopotamusNet
 {
-    //TODOS:
-    //- Make country a enum
-    //- Make overload of the ExecuteStraith function
-    //- Creaate class for each possible call of the api
     public class Core
     {
         private static string _baseUrl = "http://api.hippopotam.us";
