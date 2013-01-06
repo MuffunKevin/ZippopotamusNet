@@ -25,6 +25,17 @@ namespace ZippopotamusNet
         /// <summary>
         /// Executes the straigth request to the API the return will not be format or modify.
         /// </summary>
+        /// <param name="country">The country.</param>
+        /// <param name="zipcode">The zipcode.</param>
+        /// <returns>The coplete received Json.</returns>
+        public static string ExecuteStraigth(Countries country, string zipcode)
+        {
+            return ExecuteStraigth(country.ToString(), zipcode);
+        }
+
+        /// <summary>
+        /// Executes the straigth request to the API the return will not be format or modify.
+        /// </summary>
         /// <param name="country">The two letter ISO code of the country.</param>
         /// <param name="state">The two letter ISO code of the state.</param>
         /// <param name="city">The city.</param>
@@ -32,6 +43,18 @@ namespace ZippopotamusNet
         public static string ExecuteStraigth(string country, string state, string city)
         {
             return ExecuteStraigth(country, state, city, string.Empty);
+        }
+
+        /// <summary>
+        /// Executes the straigth request to the API the return will not be format or modify.
+        /// </summary>
+        /// <param name="country">The country.</param>
+        /// <param name="state">The two letter ISO code of the state.</param>
+        /// <param name="city">The city.</param>
+        /// <returns>The coplete received Json.</returns>
+        public static string ExecuteStraigth(Countries country, string state, string city)
+        {
+            return ExecuteStraigth(country.ToString(), state, city);
         }
 
         private static string ExecuteStraigth(string country, string state, string city, string zipcode)
@@ -88,12 +111,23 @@ namespace ZippopotamusNet
         /// <summary>
         /// Gets the nearby place with the provided information the return will not be format or modify.
         /// </summary>
-        /// <param name="country">The country.</param>
+        /// <param name="country">The two letter ISO country code.</param>
         /// <param name="zipcode">The zipcode.</param>
         /// <returns>The coplete received Json.</returns>
         public static string GetNearbyStraigth(string country, string zipcode)
         {
             return ExecuteStraigth("nearby", country, zipcode, string.Empty);
+        }
+
+        /// <summary>
+        /// Gets the nearby place with the provided information the return will not be format or modify.
+        /// </summary>
+        /// <param name="country">The country.</param>
+        /// <param name="zipcode">The zipcode.</param>
+        /// <returns>The coplete received Json.</returns>
+        public static string GetNearbyStraigth(Countries country, string zipcode)
+        {
+            return ExecuteStraigth("nearby", country.ToString(), zipcode, string.Empty);
         }
 
         /// <summary>
