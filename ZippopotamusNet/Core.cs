@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ZippopotamusNet
 {
@@ -80,7 +82,7 @@ namespace ZippopotamusNet
                     result = responseStream.ReadToEnd();
                 }
             }
-            catch(WebException e)
+            catch (WebException e)
             {
                 if (e.Message.Contains("404"))
                 {
@@ -143,5 +145,30 @@ namespace ZippopotamusNet
             }
             return urlPart;
         }
+
+        #region postal code
+        public static ZipCodeInfo GetPostalCodeInfo(Countries contry, string zipCode)
+        {
+            var result = new ZipCodeInfo();
+
+            var returnedJson = Core.ExecuteStraigth(contry, zipCode);
+            var o = JObject.Parse(returnedJson);
+
+            result = JsonConvert.DeserializeObject<ZipCodeInfo>(returnedJson);
+            result.PostalCode = (string)o["post code"];
+            result.CountryCode = (Countries)Enum.Parse(typeof(Countries), (string)o["country abbreviation"]);
+            
+            var places = (JArray)o["places"];
+            
+            for (var i = 0; i < places.Count; i++)
+            {
+                result.Places[i].PlaceName = (string)places[i]["place name"];
+                result.Places[i].StateAbbreviation = (string)places[i]["state abbreviation"];
+            }
+            
+
+            return result;
+        }
+        #endregion
     }
 }

@@ -46,6 +46,8 @@
     <Compile Include="Core.cs" />
     <Compile Include="Countrtries.cs" />
     <Compile Include="InvalidParameterException.cs" />
+    <Compile Include="Place.cs" />
+    <Compile Include="ZipCodeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
