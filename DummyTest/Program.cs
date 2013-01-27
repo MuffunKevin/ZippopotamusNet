@@ -19,7 +19,8 @@ namespace DummyTest
             //Console.Write(Core.GetNearbyStraigth(Countries.US, "90210"));
 
             //Console.WriteLine(Core.GetPostalCodeInfo(Countries.US, "90210"));
-            Console.WriteLine(Core.GetPlacesInfo(Countries.US, "WA", "Redmond"));
+            //Console.WriteLine(Core.GetPlacesInfo(Countries.US, "CA", "San Francisco"));
+            Console.WriteLine(Core.GetPlacesInfo(Countries.CA, "QC", "Sherbrooke"));
 
             Console.Read();
         }
