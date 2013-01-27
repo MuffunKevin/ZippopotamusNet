@@ -1,3 +1,1 @@
-- Make country a enum
-- Make overload of the ExecuteStraith function
-- Creaate class for each possible call of the api
+- Create something that use this code!
