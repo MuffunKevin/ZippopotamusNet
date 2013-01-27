@@ -22,7 +22,8 @@ namespace DummyTest
             //Console.WriteLine(Core.GetPlacesInfo(Countries.US, "CA", "San Francisco"));
             //Console.WriteLine(Core.GetPlacesInfo(Countries.CA, "QC", "Sherbrooke"));
 
-            Console.WriteLine(Core.GetNearby(Countries.US, "90210"));
+            //Console.WriteLine(Core.GetNearby(Countries.US, "90210"));
+            Console.WriteLine(Core.GetNearby(Countries.CA, "J1H"));
 
             Console.Read();
         }
