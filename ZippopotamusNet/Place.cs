@@ -12,5 +12,6 @@ namespace ZippopotamusNet
         public double Latitude { get; set; }
         public string State { get; set; }
         public string StateAbbreviation { get; set; }
+        public string ZipCode {get; set;}
     }
 }

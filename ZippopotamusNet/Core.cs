@@ -6,6 +6,7 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Globalization;
 
 namespace ZippopotamusNet
 {
@@ -162,11 +163,41 @@ namespace ZippopotamusNet
             
             for (var i = 0; i < places.Count; i++)
             {
+                result.Places.Add(new Place());
                 result.Places[i].PlaceName = (string)places[i]["place name"];
                 result.Places[i].StateAbbreviation = (string)places[i]["state abbreviation"];
             }
             
 
+            return result;
+        }
+        #endregion 
+        
+        #region places
+        public static PlaceInformation GetPlacesInfo(Countries country, string stateCode, string city)
+        {
+            var result = new PlaceInformation();
+            
+            var returnedJson = Core.ExecuteStraigth(country, stateCode, city);
+            var o = JObject.Parse(returnedJson);
+            
+            result = JsonConvert.DeserializeObject<PlaceInformation>(returnedJson);
+            result.CountryCode = (Countries)Enum.Parse(typeof(Countries), (string)o["country abbreviation"]);
+            result.PlaceName = (string)o["place name"];
+            result.StateCode = (string)o["state abbreviation"];
+            
+            var places = (JArray)o["places"];
+            
+            for (var i = 0; i < places.Count; i++)
+            {
+                var newPlace       = new Place();
+                newPlace.PlaceName = (string)places[i]["place name"];
+                newPlace.Longitude = double.Parse((string)places[i]["longitude"], CultureInfo.InvariantCulture);
+                newPlace.Latitude  = double.Parse((string)places[i]["latitude"], CultureInfo.InvariantCulture);
+                newPlace.ZipCode   = (string)places[i]["post code"];
+                result.Places.Add(newPlace);
+            }
+            
             return result;
         }
         #endregion

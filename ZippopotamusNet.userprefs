@@ -1,6 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ZippopotamusNet/Core.cs">
+    <Files>
+      <File FileName="ZippopotamusNet/Core.cs" Line="175" Column="12" />
+      <File FileName="ZippopotamusNet/PlaceInformation.cs" Line="12" Column="3" />
+      <File FileName="ZippopotamusNet/ZipCodeInfo.cs" Line="11" Column="44" />
+      <File FileName="ZippopotamusNet/Place.cs" Line="15" Column="36" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
