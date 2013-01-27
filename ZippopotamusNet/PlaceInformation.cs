@@ -14,6 +14,7 @@ namespace ZippopotamusNet
         
         public PlaceInformation ()
         {
+            this.Places = new List<Place>();
         }
     }
 }

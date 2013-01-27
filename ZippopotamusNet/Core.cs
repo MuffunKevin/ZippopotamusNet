@@ -200,6 +200,34 @@ namespace ZippopotamusNet
             
             return result;
         }
+
+        public static NearbyInformation GetNearby(Countries country, string zipcode)
+        {
+            var result = new NearbyInformation();
+            var returnedJson = Core.GetNearbyStraigth(country, zipcode);
+            var o = JObject.Parse(returnedJson);
+
+            result = JsonConvert.DeserializeObject<NearbyInformation>(returnedJson);
+             
+            result.NearLongitude = double.Parse((string)o["near longitude"], CultureInfo.InvariantCulture);
+            result.NearLatitude = double.Parse((string)o["near latitude"], CultureInfo.InvariantCulture);
+
+            var nearbies = (JArray)o["nearby"];
+
+            for (var i = 0; i < nearbies.Count; i++)
+            {
+                var nearby       = new Nearby();
+                nearby.Distance  = double.Parse((string)nearbies[i]["distance"], CultureInfo.InvariantCulture);
+                nearby.PlaceName = (string)nearbies[i]["place name"];
+                nearby.State     = (string)nearbies[i]["state"];
+                nearby.StateCode = (string)nearbies[i]["state abbreviation"];
+                nearby.ZipCode   = (string)nearbies[i]["postal code"];
+
+                result.Nearbies.Add(nearby);
+            }
+
+            return result;
+        }
         #endregion
     }
 }

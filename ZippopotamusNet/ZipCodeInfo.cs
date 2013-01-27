@@ -11,5 +11,10 @@ namespace ZippopotamusNet
         public string Country { get; set; }
         public Countries CountryCode { get; set; }
         public List<Place> Places { get; set; }
+
+        public ZipCodeInfo()
+        {
+            this.Places = new List<Place>();
+        }
     }
 }
