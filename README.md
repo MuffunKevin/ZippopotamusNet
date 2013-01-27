@@ -16,6 +16,9 @@ For the moment, the code provide you:
 ##WARNING!
 This is code is provide as is with no garanty. It base on a certain version of the API not necessely on the last version available.
 
+##Licence infomation
+This code is provide as open source and free to use. It's common sence that if you use it in your application, you must provide the name and adress of the GitHub project in your ReadMe or About or any other file you use as licence information.
+
 *BTW this README text as been written in [Dillinger].*
   
   [ZippopotamusAPI]: http://www.zippopotam.us/
