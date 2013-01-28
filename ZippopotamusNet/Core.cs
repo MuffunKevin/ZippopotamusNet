@@ -60,6 +60,15 @@ namespace ZippopotamusNet
             return ExecuteStraight(country.ToString(), state, city);
         }
 
+        /// <summary>
+        /// Executes the straigth request to the API the return will not be format or modify.
+        /// </summary>
+        /// <param name="country">The country.</param>
+        /// <param name="state">The state.</param>
+        /// <param name="city">The city.</param>
+        /// <param name="zipcode">The zipcode.</param>
+        /// <returns>The coplete received Json.</returns>
+        /// <exception cref="InvalidParameterException"></exception>
         private static string ExecuteStraight(string country, string state, string city, string zipcode)
         {
             var result = string.Empty;
@@ -156,48 +165,51 @@ namespace ZippopotamusNet
             var o = JObject.Parse(returnedJson);
 
             result = JsonConvert.DeserializeObject<ZipCodeInfo>(returnedJson);
-            result.PostalCode = (string)o["post code"];
-            result.CountryCode = (Countries)Enum.Parse(typeof(Countries), (string)o["country abbreviation"]);
-            
-            var places = (JArray)o["places"];
-            
+            result.PostalCode = o["post code"].ToString();
+            result.CountryCode = (Countries)Enum.Parse(typeof(Countries), o["country abbreviation"].ToString());
+
+            var places = o["places"] as JArray;
+
             for (var i = 0; i < places.Count; i++)
             {
-                result.Places.Add(new Place());
-                result.Places[i].PlaceName = (string)places[i]["place name"];
-                result.Places[i].StateAbbreviation = (string)places[i]["state abbreviation"];
+                var place = new Place();
+                
+                place.PlaceName = places[i]["place name"].ToString();
+                place.StateAbbreviation = places[i]["state abbreviation"].ToString();
+                result.Places.Add(place);
             }
-            
 
             return result;
         }
-        #endregion 
-        
+        #endregion
+
         #region places
         public static PlaceInformation GetPlacesInfo(Countries country, string stateCode, string city)
         {
             var result = new PlaceInformation();
-            
+
             var returnedJson = Core.ExecuteStraight(country, stateCode, city);
             var o = JObject.Parse(returnedJson);
-            
+
             result = JsonConvert.DeserializeObject<PlaceInformation>(returnedJson);
             result.CountryCode = (Countries)Enum.Parse(typeof(Countries), (string)o["country abbreviation"]);
-            result.PlaceName = (string)o["place name"];
-            result.StateCode = (string)o["state abbreviation"];
-            
-            var places = (JArray)o["places"];
-            
+            result.PlaceName = o["place name"].ToString();
+            result.StateCode = o["state abbreviation"].ToString();
+
+            var places = o["places"] as JArray;
+
             for (var i = 0; i < places.Count; i++)
             {
-                var newPlace       = new Place();
-                newPlace.PlaceName = (string)places[i]["place name"];
-                newPlace.Longitude = double.Parse((string)places[i]["longitude"], CultureInfo.InvariantCulture);
-                newPlace.Latitude  = double.Parse((string)places[i]["latitude"], CultureInfo.InvariantCulture);
-                newPlace.ZipCode   = (string)places[i]["post code"];
+                var newPlace = new Place();
+
+                newPlace.PlaceName = places[i]["place name"].ToString();
+                newPlace.Longitude = double.Parse(places[i]["longitude"].ToString(), CultureInfo.InvariantCulture);
+                newPlace.Latitude = double.Parse(places[i]["latitude"].ToString(), CultureInfo.InvariantCulture);
+                newPlace.ZipCode = places[i]["post code"].ToString();
+
                 result.Places.Add(newPlace);
             }
-            
+
             return result;
         }
 
@@ -208,24 +220,25 @@ namespace ZippopotamusNet
             var o = JObject.Parse(returnedJson);
 
             result = JsonConvert.DeserializeObject<NearbyInformation>(returnedJson);
-             
-            result.NearLongitude = double.Parse((string)o["near longitude"], CultureInfo.InvariantCulture);
-            result.NearLatitude = double.Parse((string)o["near latitude"], CultureInfo.InvariantCulture);
 
-            var nearbies = (JArray)o["nearby"];
+            result.NearLongitude = double.Parse(o["near longitude"].ToString(), CultureInfo.InvariantCulture);
+            result.NearLatitude = double.Parse(o["near latitude"].ToString(), CultureInfo.InvariantCulture);
+
+            var nearbies = o["nearby"] as JArray;
 
             for (var i = 0; i < nearbies.Count; i++)
             {
-                var nearby       = new Nearby();
-                nearby.Distance  = double.Parse((string)nearbies[i]["distance"], CultureInfo.InvariantCulture);
-                nearby.PlaceName = (string)nearbies[i]["place name"];
-                nearby.State     = (string)nearbies[i]["state"];
-                nearby.StateCode = (string)nearbies[i]["state abbreviation"];
-                nearby.ZipCode   = (string)nearbies[i]["postal code"];
+                var nearby = new Nearby();
+
+                nearby.Distance = double.Parse(nearbies[i]["distance"].ToString(), CultureInfo.InvariantCulture);
+                nearby.PlaceName = nearbies[i]["place name"].ToString();
+                nearby.State = nearbies[i]["state"].ToString();
+                nearby.StateCode = nearbies[i]["state abbreviation"].ToString();
+                nearby.ZipCode = nearbies[i]["postal code"].ToString();
 
                 result.Nearbies.Add(nearby);
             }
-
+            
             return result;
         }
         #endregion
