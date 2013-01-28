@@ -20,9 +20,9 @@ namespace ZippopotamusNet
         /// <param name="country">The two letter ISO code of the country.</param>
         /// <param name="zipcode">The zipcode.</param>
         /// <returns>The coplete received Json.</returns>
-        public static string ExecuteStraigth(string country, string zipcode)
+        public static string ExecuteStraight(string country, string zipcode)
         {
-            return ExecuteStraigth(country, string.Empty, string.Empty, zipcode);
+            return ExecuteStraight(country, string.Empty, string.Empty, zipcode);
         }
 
         /// <summary>
@@ -31,9 +31,9 @@ namespace ZippopotamusNet
         /// <param name="country">The country.</param>
         /// <param name="zipcode">The zipcode.</param>
         /// <returns>The coplete received Json.</returns>
-        public static string ExecuteStraigth(Countries country, string zipcode)
+        public static string ExecuteStraight(Countries country, string zipcode)
         {
-            return ExecuteStraigth(country.ToString(), zipcode);
+            return ExecuteStraight(country.ToString(), zipcode);
         }
 
         /// <summary>
@@ -43,9 +43,9 @@ namespace ZippopotamusNet
         /// <param name="state">The two letter ISO code of the state.</param>
         /// <param name="city">The city.</param>
         /// <returns>The coplete received Json.</returns>
-        public static string ExecuteStraigth(string country, string state, string city)
+        public static string ExecuteStraight(string country, string state, string city)
         {
-            return ExecuteStraigth(country, state, city, string.Empty);
+            return ExecuteStraight(country, state, city, string.Empty);
         }
 
         /// <summary>
@@ -55,12 +55,12 @@ namespace ZippopotamusNet
         /// <param name="state">The two letter ISO code of the state.</param>
         /// <param name="city">The city.</param>
         /// <returns>The coplete received Json.</returns>
-        public static string ExecuteStraigth(Countries country, string state, string city)
+        public static string ExecuteStraight(Countries country, string state, string city)
         {
-            return ExecuteStraigth(country.ToString(), state, city);
+            return ExecuteStraight(country.ToString(), state, city);
         }
 
-        private static string ExecuteStraigth(string country, string state, string city, string zipcode)
+        private static string ExecuteStraight(string country, string state, string city, string zipcode)
         {
             var result = string.Empty;
 
@@ -119,7 +119,7 @@ namespace ZippopotamusNet
         /// <returns>The coplete received Json.</returns>
         public static string GetNearbyStraigth(string country, string zipcode)
         {
-            return ExecuteStraigth("nearby", country, zipcode, string.Empty);
+            return ExecuteStraight("nearby", country, zipcode, string.Empty);
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace ZippopotamusNet
         /// <returns>The coplete received Json.</returns>
         public static string GetNearbyStraigth(Countries country, string zipcode)
         {
-            return ExecuteStraigth("nearby", country.ToString(), zipcode, string.Empty);
+            return ExecuteStraight("nearby", country.ToString(), zipcode, string.Empty);
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace ZippopotamusNet
         {
             var result = new ZipCodeInfo();
 
-            var returnedJson = Core.ExecuteStraigth(contry, zipCode);
+            var returnedJson = Core.ExecuteStraight(contry, zipCode);
             var o = JObject.Parse(returnedJson);
 
             result = JsonConvert.DeserializeObject<ZipCodeInfo>(returnedJson);
@@ -178,7 +178,7 @@ namespace ZippopotamusNet
         {
             var result = new PlaceInformation();
             
-            var returnedJson = Core.ExecuteStraigth(country, stateCode, city);
+            var returnedJson = Core.ExecuteStraight(country, stateCode, city);
             var o = JObject.Parse(returnedJson);
             
             result = JsonConvert.DeserializeObject<PlaceInformation>(returnedJson);
