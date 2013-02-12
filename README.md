@@ -10,6 +10,9 @@ For the moment, the code provide you:
 - Basic parameter validation
 - Some call are now able to desealize the Json code for you: GetPostalCodeInfo, GetPlacesInfo and GetNearby.
 
+##Dependencies
+This is build with the [Json.NET nuget package]*.
+
 ##Upcomming feature
 - Ask for it!
 
@@ -20,6 +23,8 @@ This is code is provide as is with no garanty. It base on a certain version of t
 This code is provide as open source and free to use. It's common sence that if you use it in your application, you must provide the name and adress of the GitHub project in your ReadMe or About or any other file you use as licence information.
 
 *BTW this README text as been written in [Dillinger].*
+
   
   [ZippopotamusAPI]: http://www.zippopotam.us/
   [Dillinger]: http://dillinger.io/
+  [Json.NET nuget package]: http://www.nuget.org/packages/Newtonsoft.Json
